@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Tentative Exam for Al-Alia International Indian School</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f9;
+        }
+        .teal-badge {
+            background-color: #2dd4bf;
+            color: white;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        textarea.auto-expand {
+            min-height: 120px;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col">
+
+    <!-- TOP GLOBAL HEADER BANNER -->
+    <header class="bg-blue-900 text-white shadow-md border-b border-blue-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Left Branding -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-1 rounded-lg shadow-sm">
+                    <i class="fas fa-[#fa-graduation-cap] text-blue-700 text-2xl px-1"></i>
+                    <i class="fas fa-graduation-cap text-blue-700 text-2xl px-1"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg md:text-xl tracking-tight leading-tight">Online Tentative Exam</h1>
+                    <p class="text-xs text-blue-200">Al-Alia International Indian School</p>
+                </div>
+            </div>
+
+            <!-- Right Header Info & Image Badge -->
+            <div class="flex items-center space-x-4">
+                <div class="text-right hidden sm:block">
+                    <span class="bg-blue-800 text-blue-100 text-xs font-semibold px-2.5 py-1 rounded-md border border-blue-700">
+                        Made by roll no:11208
+                    </span>
+                </div>
+                <div class="flex items-center space-x-2 bg-blue-950 p-1.5 rounded-lg border border-blue-800">
+                    <img src="https://placehold.co/120x60/803030/ffffff?text=Al-Alia+School" 
+                         alt="Al-Alia International Indian School" 
+                         class="h-10 w-20 object-cover rounded shadow-sm"
+                         onerror="this.src='https://placehold.co/120x60/1e3a8a/ffffff?text=Al-Alia+School'">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+        <!-- VIEW 1: ROLE SELECTION / AUTHENTICATION -->
+        <div id="view-auth" class="max-w-xl mx-auto my-8">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                <!-- Auth Tabs -->
+                <div class="flex border-b border-gray-200 bg-gray-50">
+                    <button id="tab-btn-student" onclick="switchAuthTab('student')" class="flex-1 py-4 font-semibold text-center border-b-2 border-blue-600 text-blue-600 flex items-center justify-center space-x-2">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Student Login</span>
+                    </button>
+                    <button id="tab-btn-teacher" onclick="switchAuthTab('teacher')" class="flex-1 py-4 font-semibold text-center border-b-2 border-transparent text-gray-500 hover:text-gray-700 flex items-center justify-center space-x-2">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Teacher Portal</span>
+                    </button>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <!-- Student Login Form -->
+                    <form id="form-student-login" onsubmit="handleStudentLogin(event)" class="space-y-4">
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Student Verification</h2>
+                        <p class="text-sm text-gray-500 mb-4">Please enter your details to access your examination portal.</p>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Full Student Name</label>
+                            <input type="text" id="student-name" required placeholder="Enter your full name" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Admission Number</label>
+                            <input type="text" id="student-adm" required placeholder="e.g. 11208" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Grade</label>
+                                <select id="student-grade" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
+                                    <option value="6th">6th Grade</option>
+                                    <option value="7th">7th Grade</option>
+                                    <option value="8th">8th Grade</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Section</label>
+                                <select id="student-section" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white">
+                                    <option value="Section A">Section A</option>
+                                    <option value="Section B">Section B</option>
+                                    <option value="Section C">Section C</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2 mt-4">
+                            <span>Enter Student Dashboard</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <!-- Teacher Login Form -->
+                    <form id="form-teacher-login" onsubmit="handleTeacherLogin(event)" class="space-y-4 hidden">
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Teacher Authentication</h2>
+                        <p class="text-sm text-gray-500 mb-4">Enter your authorization code to access exam evaluations and creator settings.</p>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Teacher Security Code</label>
+                            <input type="password" id="teacher-code" required placeholder="Enter Security Code" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                        </div>
+
+                        <div id="teacher-error" class="hidden p-3 rounded-lg bg-red-50 text-red-700 text-xs font-semibold border border-red-200">
+                            Invalid authorization security code. Please try again.
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center space-x-2 mt-4">
+                            <i class="fas fa-lock"></i>
+                            <span>Authenticate & Open Receiver</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: STUDENT DASHBOARD -->
+        <div id="view-student-dashboard" class="hidden space-y-6">
+            <!-- Student Header Banner -->
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-blue-500 bg-opacity-40 text-blue-100 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wider">Student Active</span>
+                        <span id="disp-student-adm" class="bg-blue-900 text-blue-200 text-xs px-2.5 py-1 rounded-full font-mono"></span>
+                    </div>
+                    <h2 id="disp-student-name" class="text-2xl md:text-3xl font-bold mt-1">Welcome!</h2>
+                    <p id="disp-student-info" class="text-blue-100 mt-1 text-sm font-medium"></p>
+                </div>
+                <button onclick="logout()" class="mt-4 md:mt-0 bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center space-x-2 border border-white border-opacity-30">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main Exams List -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex justify-between items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center space-x-2">
+                            <i class="fas fa-file-signature text-blue-600"></i>
+                            <span>Available Examination Papers</span>
+                        </h3>
+                        <span class="text-xs bg-blue-100 text-blue-800 font-bold px-2.5 py-1 rounded-full">Published Only</span>
+                    </div>
+
+                    <div id="available-exams-container" class="space-y-4">
+                        <!-- Exam cards inserted dynamically -->
+                    </div>
+                </div>
+
+                <!-- Exam Instructions & Rules Panel -->
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
+                        <h3 class="font-bold text-gray-800 text-base mb-3 flex items-center space-x-2 border-b border-gray-100 pb-2">
+                            <i class="fas fa-clipboard-list text-amber-500"></i>
+                            <span>Examination Rules</span>
+                        </h3>
+                        <ul class="space-y-3 text-xs text-gray-600">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-clock text-blue-500 mt-0.5"></i>
+                                <span><strong>Time Limit:</strong> Each exam has a strictly enforced timer.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-paper-plane text-emerald-500 mt-0.5"></i>
+                                <span><strong>Auto Submission:</strong> When the time limit expires, your exam automatically submits.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-forward text-purple-500 mt-0.5"></i>
+                                <span><strong>Skip Questions:</strong> You can toggle 'Skip' on optional questions and return anytime.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-keyboard text-indigo-500 mt-0.5"></i>
+                                <span><strong>Unlimited Typing:</strong> Type as much detailed explanation as needed for written answers.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: EXAM TAKING SCREEN -->
+        <div id="view-exam-taking" class="hidden space-y-6">
+            <!-- Exam Header Bar with Timer -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex flex-wrap justify-between items-center sticky top-16 z-40 gap-4">
+                <div>
+                    <h2 id="active-exam-title" class="text-xl font-bold text-gray-800">Exam Title</h2>
+                    <p id="active-exam-meta" class="text-xs text-gray-500"></p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="bg-amber-50 border border-amber-200 px-4 py-2 rounded-xl flex items-center space-x-2">
+                        <i class="fas fa-clock text-amber-600 text-lg animate-pulse"></i>
+                        <div>
+                            <p class="text-[10px] uppercase font-bold text-amber-600 tracking-wider">Time Remaining</p>
+                            <p id="exam-timer" class="font-mono font-bold text-lg text-amber-800">00:00</p>
+                        </div>
+                    </div>
+                    <button onclick="submitExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-bold shadow-sm transition flex items-center space-x-2">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Finish & Submit</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Cards Container -->
+            <div id="exam-questions-list" class="space-y-6">
+                <!-- Dynamically rendered questions matching Image 1 layout -->
+            </div>
+
+            <!-- Bottom Action Bar -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-200 flex justify-between items-center">
+                <button onclick="scrollToTop()" class="text-gray-600 hover:text-blue-600 text-sm font-semibold flex items-center space-x-1">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Back to Top</span>
+                </button>
+                <button onclick="submitExam()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-xl font-bold shadow-sm transition">
+                    Submit Exam Now
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW 4: TEACHER PORTAL (CREATOR & EVALUATION RECEIVER) -->
+        <div id="view-teacher-portal" class="hidden space-y-6">
+            <!-- Teacher Header -->
+            <div class="bg-blue-900 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <span id="disp-teacher-scope" class="bg-blue-800 text-blue-200 text-xs px-3 py-1 rounded-full font-mono font-bold">Scope: Global</span>
+                    <h2 class="text-2xl font-bold mt-2">Teacher Evaluation & Creator Hub</h2>
+                    <p class="text-blue-200 text-xs mt-1">Review student answer submissions line-by-line and construct question papers.</p>
+                </div>
+                <button onclick="logout()" class="mt-4 md:mt-0 bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                    Logout Teacher
+                </button>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="flex border-b border-gray-200 bg-white rounded-t-xl px-4 pt-2">
+                <button id="t-tab-eval" onclick="switchTeacherTab('eval')" class="py-3 px-6 font-bold text-sm border-b-2 border-blue-600 text-blue-600 flex items-center space-x-2">
+                    <i class="fas fa-inbox"></i>
+                    <span>Student Submissions Receiver</span>
+                </button>
+                <button id="t-tab-create" onclick="switchTeacherTab('create')" class="py-3 px-6 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-gray-700 flex items-center space-x-2">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Create Question Paper</span>
+                </button>
+            </div>
+
+            <!-- TEACHER SECTION A: SUBMISSIONS RECEIVER & EVALUATION -->
+            <div id="teacher-section-eval" class="space-y-6">
+                <!-- Filters -->
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-wrap gap-4 items-center justify-between">
+                    <h3 class="font-bold text-gray-800 text-base">Filter Submissions</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <select id="filter-eval-grade" onchange="renderTeacherSubmissions()" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white">
+                            <option value="ALL">All Grades</option>
+                            <option value="6th">6th Grade</option>
+                            <option value="7th">7th Grade</option>
+                            <option value="8th">8th Grade</option>
+                        </select>
+                        <select id="filter-eval-sec" onchange="renderTeacherSubmissions()" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 bg-white">
+                            <option value="ALL">All Sections</option>
+                            <option value="Section A">Section A</option>
+                            <option value="Section B">Section B</option>
+                            <option value="Section C">Section C</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submissions List -->
+                <div id="teacher-submissions-container" class="space-y-6">
+                    <!-- Cards rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- TEACHER SECTION B: QUESTION PAPER CREATOR -->
+            <div id="teacher-section-create" class="hidden space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6">
+                    <h3 class="font-bold text-xl text-gray-800 border-b border-gray-100 pb-3">Build New Question Paper</h3>
+
+                    <!-- Paper Metadata -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Exam Title</label>
+                            <input type="text" id="new-paper-title" placeholder="e.g. Mathematics Mid-Term Exam" class="w-full px-4 py-2 rounded-lg border border-gray-300">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Grade Target</label>
+                            <select id="new-paper-grade" class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white">
+                                <option value="6th">6th Grade</option>
+                                <option value="7th">7th Grade</option>
+                                <option value="8th">8th Grade</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Section Target</label>
+                            <select id="new-paper-section" class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white">
+                                <option value="ALL">All Sections</option>
+                                <option value="Section A">Section A</option>
+                                <option value="Section B">Section B</option>
+                                <option value="Section C">Section C</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Subject Code</label>
+                            <input type="text" id="new-paper-subject" placeholder="e.g. MATH" class="w-full px-4 py-2 rounded-lg border border-gray-300">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Time Limit (Minutes)</label>
+                            <input type="number" id="new-paper-time" value="30" min="5" class="w-full px-4 py-2 rounded-lg border border-gray-300">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Publish Status</label>
+                            <select id="new-paper-status" class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white font-semibold text-blue-700">
+                                <option value="Published">Published (Students can see & attempt)</option>
+                                <option value="Draft">Draft (Hidden from students)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Builder Questions List -->
+                    <div class="border-t border-gray-100 pt-4 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-gray-800">Questions List</h4>
+                            <div class="flex space-x-2">
+                                <button onclick="addQuestionToBuilder('type_answer')" class="bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs px-3 py-2 rounded-lg font-bold border border-blue-200">+ Written Answer</button>
+                                <button onclick="addQuestionToBuilder('tf')" class="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs px-3 py-2 rounded-lg font-bold border border-indigo-200">+ True/False</button>
+                                <button onclick="addQuestionToBuilder('mcq')" class="bg-teal-50 text-teal-700 hover:bg-teal-100 text-xs px-3 py-2 rounded-lg font-bold border border-teal-200">+ MCQ</button>
+                                <button onclick="addQuestionToBuilder('match')" class="bg-purple-50 text-purple-700 hover:bg-purple-100 text-xs px-3 py-2 rounded-lg font-bold border border-purple-200">+ Match Following</button>
+                            </div>
+                        </div>
+
+                        <div id="paper-builder-questions" class="space-y-4">
+                            <!-- Questions being built -->
+                        </div>
+                    </div>
+
+                    <!-- Submit Paper -->
+                    <div class="border-t border-gray-100 pt-4 flex justify-end">
+                        <button onclick="saveCreatedQuestionPaper()" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-xl font-bold shadow-md transition">
+                            <i class="fas fa-save mr-2"></i> Save & Publish Question Paper
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-200 py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500">
+            <p>Al-Alia International Indian School &copy; 2026. Online Tentative Examination Portal.</p>
+        </div>
+    </footer>
+
+    <!-- APP SCRIPT LOGIC (FULLY ENCAPSULATED) -->
+    <script>
+        // Global Application State
+        let currentStudent = null;
+        let currentTeacherScope = null; // null or { grade: '6th', subject: 'MATH' } or 'MASTER'
+        let activeExamSession = null;
+        let examTimerInterval = null;
+
+        // In-memory Database
+        let examPapers = [
+            {
+                id: 'paper-demo-1',
+                title: 'Mathematics Assessment 1',
+                grade: '6th',
+                section: 'ALL',
+                subject: 'MATH',
+                timeMinutes: 20,
+                status: 'Published',
+                questions: [
+                    {
+                        id: 'q1',
+                        type: 'mcq',
+                        prompt: 'The number of times an item occurs in the data is called its:',
+                        options: ['Tally', 'Frequency', 'Scale', 'Symbol'],
+                        correctKey: 'Frequency',
+                        imageUrl: ''
+                    },
+                    {
+                        id: 'q2',
+                        type: 'tf',
+                        prompt: 'A bar graph represents data using rectangular bars of equal width.',
+                        correctKey: 'True',
+                        imageUrl: ''
+                    },
+                    {
+                        id: 'q3',
+                        type: 'type_answer',
+                        prompt: 'Define the term "Range" in statistics and explain how to calculate it.',
+                        imageUrl: ''
+                    },
+                    {
+                        id: 'q4',
+                        type: 'match',
+                        prompt: 'Match the mathematical terms with their definitions:',
+                        pairs: [
+                            { item: 'Mean', match: 'Average value of data set' },
+                            { item: 'Median', match: 'Middle value in ordered set' },
+                            { item: 'Mode', match: 'Most frequent item' }
+                        ],
+                        imageUrl: ''
+                    }
+                ]
+            }
+        ];
+
+        let builderQuestions = [];
+        let submissions = [];
+
+        // Application Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            // Setup default builder questions
+            addQuestionToBuilder('mcq');
+        });
+
+        // Auth Tabs Toggle
+        function switchAuthTab(tab) {
+            const studentForm = document.getElementById('form-student-login');
+            const teacherForm = document.getElementById('form-teacher-login');
+            const tabStudent = document.getElementById('tab-btn-student');
+            const tabTeacher = document.getElementById('tab-btn-teacher');
+
+            if (tab === 'student') {
+                studentForm.classList.remove('hidden');
+                teacherForm.classList.add('hidden');
+                tabStudent.className = "flex-1 py-4 font-semibold text-center border-b-2 border-blue-600 text-blue-600 flex items-center justify-center space-x-2";
+                tabTeacher.className = "flex-1 py-4 font-semibold text-center border-b-2 border-transparent text-gray-500 hover:text-gray-700 flex items-center justify-center space-x-2";
+            } else {
+                studentForm.classList.add('hidden');
+                teacherForm.classList.remove('hidden');
+                tabTeacher.className = "flex-1 py-4 font-semibold text-center border-b-2 border-blue-600 text-blue-600 flex items-center justify-center space-x-2";
+                tabStudent.className = "flex-1 py-4 font-semibold text-center border-b-2 border-transparent text-gray-500 hover:text-gray-700 flex items-center justify-center space-x-2";
+            }
+        }
+
+        // Student Login
+        function handleStudentLogin(e) {
+            e.preventDefault();
+            const name = document.getElementById('student-name').value.trim();
+            const adm = document.getElementById('student-adm').value.trim();
+            const grade = document.getElementById('student-grade').value;
+            const section = document.getElementById('student-section').value;
+
+            if (!name || !adm) return;
+
+            currentStudent = { name, adm, grade, section };
+
+            document.getElementById('disp-student-name').innerText = `Welcome, ${name}!`;
+            document.getElementById('disp-student-adm').innerText = `Adm: ${adm}`;
+            document.getElementById('disp-student-info').innerText = `${grade} Grade — ${section}`;
+
+            showView('view-student-dashboard');
+            renderAvailableExams();
+        }
+
+        // Teacher Login (Strictly Secret Security Code)
+        function handleTeacherLogin(e) {
+            e.preventDefault();
+            const code = document.getElementById('teacher-code').value.trim();
+            const errBox = document.getElementById('teacher-error');
+            errBox.classList.add('hidden');
+
+            if (code === 'MASTERKEY@ALALIA') {
+                currentTeacherScope = 'MASTER';
+            } else {
+                // Parse ALIA[Grade][Subject] format e.g. ALIA6MATH, ALIA7SCI, ALIA8ENG
+                const match = code.match(/^ALIA([678])([A-Z]+)$/i);
+                if (match) {
+                    currentTeacherScope = {
+                        grade: match[1] + 'th',
+                        subject: match[2].toUpperCase()
+                    };
+                } else {
+                    errBox.classList.remove('hidden');
+                    return;
+                }
+            }
+
+            const scopeText = currentTeacherScope === 'MASTER' 
+                ? 'Master Access (All Grades & Subjects)' 
+                : `${currentTeacherScope.grade} — Subject: ${currentTeacherScope.subject}`;
+            document.getElementById('disp-teacher-scope').innerText = `Scope: ${scopeText}`;
+
+            showView('view-teacher-portal');
+            renderTeacherSubmissions();
+        }
+
+        function logout() {
+            currentStudent = null;
+            currentTeacherScope = null;
+            if (examTimerInterval) clearInterval(examTimerInterval);
+            document.getElementById('student-name').value = '';
+            document.getElementById('student-adm').value = '';
+            document.getElementById('teacher-code').value = '';
+            showView('view-auth');
+        }
+
+        // Navigation Helper
+        function showView(viewId) {
+            ['view-auth', 'view-student-dashboard', 'view-exam-taking', 'view-teacher-portal'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(viewId).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        // RENDER STUDENT AVAILABLE EXAMS
+        function renderAvailableExams() {
+            const container = document.getElementById('available-exams-container');
+            container.innerHTML = '';
+
+            const filtered = examPapers.filter(p => 
+                p.status === 'Published' && 
+                p.grade === currentStudent.grade && 
+                (p.section === 'ALL' || p.section === currentStudent.section)
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-8 rounded-xl border border-gray-200 text-center">
+                        <i class="fas fa-folder-open text-gray-300 text-4xl mb-3"></i>
+                        <p class="text-gray-600 font-semibold">No active published exams for ${currentStudent.grade} - ${currentStudent.section}.</p>
+                        <p class="text-xs text-gray-400 mt-1">Check back later when your teachers publish an exam.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(paper => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition flex flex-col md:flex-row justify-between items-start md:items-center gap-4";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded-full">${paper.subject}</span>
+                            <span class="text-xs text-gray-500 font-medium">${paper.questions.length} Questions</span>
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-lg mt-1">${paper.title}</h4>
+                        <p class="text-xs text-gray-500">Duration: ${paper.timeMinutes} Minutes</p>
+                    </div>
+                    <button onclick="startExam('${paper.id}')" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-sm transition flex items-center space-x-2 whitespace-nowrap">
+                        <i class="fas fa-pen-nib"></i>
+                        <span>Start Exam</span>
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // START EXAM SESSION
+        function startExam(paperId) {
+            const paper = examPapers.find(p => p.id === paperId);
+            if (!paper) return;
+
+            activeExamSession = {
+                paperId: paper.id,
+                title: paper.title,
+                grade: paper.grade,
+                section: currentStudent.section,
+                subject: paper.subject,
+                studentName: currentStudent.name,
+                studentAdm: currentStudent.adm,
+                startTime: new Date(),
+                answers: {}
+            };
+
+            document.getElementById('active-exam-title').innerText = paper.title;
+            document.getElementById('active-exam-meta').innerText = `${paper.grade} (${currentStudent.section}) | Subject: ${paper.subject}`;
+
+            renderExamQuestions(paper.questions);
+            startTimer(paper.timeMinutes * 60);
+
+            showView('view-exam-taking');
+        }
+
+        // RENDER EXAM QUESTIONS (Matching Image 1 EXACT layout with teal rounded badge)
+        function renderExamQuestions(questions) {
+            const container = document.getElementById('exam-questions-list');
+            container.innerHTML = '';
+
+            questions.forEach((q, index) => {
+                const qNum = index + 1;
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-4 relative";
+                card.id = `q-card-${q.id}`;
+
+                let bodyHtml = '';
+
+                // Question Image if present
+                if (q.imageUrl) {
+                    bodyHtml += `
+                        <div class="mb-4 max-w-md">
+                            <img src="${q.imageUrl}" alt="Question Graphic" class="rounded-xl border border-gray-200 max-h-64 object-contain">
+                        </div>
+                    `;
+                }
+
+                // Question Types
+                if (q.type === 'mcq') {
+                    bodyHtml += `<div class="space-y-3 mt-4">`;
+                    q.options.forEach((opt, oIdx) => {
+                        bodyHtml += `
+                            <label class="flex items-center space-x-3 p-3.5 rounded-xl border border-gray-200 hover:bg-blue-50/50 cursor-pointer transition">
+                                <input type="radio" name="answer_${q.id}" value="${opt}" onchange="recordAnswer('${q.id}', '${opt}')" class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                <span class="text-gray-700 text-base">${opt}</span>
+                            </label>
+                        `;
+                    });
+                    bodyHtml += `</div>`;
+                } else if (q.type === 'tf') {
+                    bodyHtml += `
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <label class="flex items-center space-x-3 p-4 rounded-xl border border-gray-200 hover:bg-blue-50 cursor-pointer">
+                                <input type="radio" name="answer_${q.id}" value="True" onchange="recordAnswer('${q.id}', 'True')" class="w-5 h-5 text-blue-600">
+                                <span class="font-semibold text-gray-700">True</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-4 rounded-xl border border-gray-200 hover:bg-blue-50 cursor-pointer">
+                                <input type="radio" name="answer_${q.id}" value="False" onchange="recordAnswer('${q.id}', 'False')" class="w-5 h-5 text-blue-600">
+                                <span class="font-semibold text-gray-700">False</span>
+                            </label>
+                        </div>
+                    `;
+                } else if (q.type === 'type_answer') {
+                    bodyHtml += `
+                        <div class="mt-4 space-y-2">
+                            <textarea id="ta_${q.id}" oninput="recordAnswer('${q.id}', this.value); updateCount('${q.id}');" placeholder="Type your full answer here..." class="auto-expand w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-base text-gray-800"></textarea>
+                            <div class="flex justify-end text-xs text-gray-400 font-mono">
+                                <span id="count_${q.id}">0 words | 0 chars</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (q.type === 'match') {
+                    bodyHtml += `<div class="mt-4 space-y-3">`;
+                    q.pairs.forEach((pair, pIdx) => {
+                        const allMatches = q.pairs.map(p => p.match);
+                        bodyHtml += `
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-gray-50 rounded-xl border border-gray-200 gap-2">
+                                <span class="font-semibold text-gray-700">${pair.item}</span>
+                                <select onchange="recordMatchAnswer('${q.id}', '${pair.item}', this.value)" class="px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:ring-blue-500">
+                                    <option value="">-- Select Matching Option --</option>
+                                    ${allMatches.map(m => `<option value="${m}">${m}</option>`).join('')}
+                                </select>
+                            </div>
+                        `;
+                    });
+                    bodyHtml += `</div>`;
+                }
+
+                // Full HTML assembly matching Image 1 (Teal rounded badge layout)
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <!-- Rounded Teal Badge (Image 1 Style) -->
+                        <div class="teal-badge w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm shadow-sm">
+                            ${qNum}
+                        </div>
+                        <!-- Skip Question Toggle -->
+                        <button onclick="toggleSkipQuestion('${q.id}')" id="skip-btn-${q.id}" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-1.5 rounded-full font-semibold transition">
+                            <i class="fas fa-forward mr-1"></i> Skip Question
+                        </button>
+                    </div>
+
+                    <!-- Question Prompt text (Large & clear) -->
+                    <h3 class="text-lg md:text-xl font-medium text-gray-800 leading-snug">
+                        ${q.prompt}
+                    </h3>
+
+                    <div id="q-body-${q.id}">
+                        ${bodyHtml}
+                    </div>
+
+                    <div id="skip-banner-${q.id}" class="hidden p-3 bg-purple-50 text-purple-700 text-xs font-semibold rounded-lg border border-purple-200 mt-2">
+                        <i class="fas fa-info-circle mr-1"></i> Question currently marked as Skipped.
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // TIMER LOGIC
+        function startTimer(seconds) {
+            if (examTimerInterval) clearInterval(examTimerInterval);
+            let timeRemaining = seconds;
+
+            const timerDisp = document.getElementById('exam-timer');
+
+            examTimerInterval = setInterval(() => {
+                timeRemaining--;
+                const m = Math.floor(timeRemaining / 60);
+                const s = timeRemaining % 60;
+                timerDisp.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(examTimerInterval);
+                    alert("Time has expired! Your exam will now be submitted automatically.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        // RECORD ANSWERS
+        function recordAnswer(qId, val) {
+            if (!activeExamSession) return;
+            activeExamSession.answers[qId] = val;
+        }
+
+        function recordMatchAnswer(qId, item, matchVal) {
+            if (!activeExamSession) return;
+            if (!activeExamSession.answers[qId] || typeof activeExamSession.answers[qId] !== 'object') {
+                activeExamSession.answers[qId] = {};
+            }
+            activeExamSession.answers[qId][item] = matchVal;
+        }
+
+        function updateCount(qId) {
+            const val = document.getElementById(`ta_${qId}`)?.value || '';
+            const words = val.trim() ? val.trim().split(/\s+/).length : 0;
+            const chars = val.length;
+            document.getElementById(`count_${qId}`).innerText = `${words} words | ${chars} chars`;
+        }
+
+        function toggleSkipQuestion(qId) {
+            const banner = document.getElementById(`skip-banner-${qId}`);
+            const btn = document.getElementById(`skip-btn-${qId}`);
+
+            if (banner.classList.contains('hidden')) {
+                banner.classList.remove('hidden');
+                btn.className = "text-xs bg-purple-600 text-white px-3 py-1.5 rounded-full font-semibold transition";
+                recordAnswer(qId, "[SKIPPED]");
+            } else {
+                banner.classList.add('hidden');
+                btn.className = "text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-1.5 rounded-full font-semibold transition";
+            }
+        }
+
+        // SUBMIT EXAM
+        function submitExam() {
+            if (examTimerInterval) clearInterval(examTimerInterval);
+
+            const paper = examPapers.find(p => p.id === activeExamSession.paperId);
+
+            const submissionData = {
+                id: 'sub-' + Date.now(),
+                paperTitle: activeExamSession.title,
+                studentName: activeExamSession.studentName,
+                studentAdm: activeExamSession.studentAdm,
+                grade: activeExamSession.grade,
+                section: activeExamSession.section,
+                subject: activeExamSession.subject,
+                submittedAt: new Date().toLocaleTimeString(),
+                responses: paper.questions.map(q => {
+                    let ans = activeExamSession.answers[q.id];
+                    if (!ans) ans = "[No Answer Provided]";
+                    if (typeof ans === 'object') {
+                        ans = Object.entries(ans).map(([k,v]) => `${k} -> ${v}`).join('; ');
+                    }
+                    return {
+                        question: q.prompt,
+                        answer: ans
+                    };
+                }),
+                evaluation: {
+                    evaluated: false,
+                    score: '',
+                    letterGrade: 'A',
+                    comments: ''
+                }
+            };
+
+            submissions.unshift(submissionData);
+
+            alert("Exam submitted successfully to the teacher receiver portal!");
+            activeExamSession = null;
+            showView('view-student-dashboard');
+        }
+
+        // TEACHER TAB SWITCHING
+        function switchTeacherTab(tab) {
+            const evalSec = document.getElementById('teacher-section-eval');
+            const createSec = document.getElementById('teacher-section-create');
+            const tabEval = document.getElementById('t-tab-eval');
+            const tabCreate = document.getElementById('t-tab-create');
+
+            if (tab === 'eval') {
+                evalSec.classList.remove('hidden');
+                createSec.classList.add('hidden');
+                tabEval.className = "py-3 px-6 font-bold text-sm border-b-2 border-blue-600 text-blue-600 flex items-center space-x-2";
+                tabCreate.className = "py-3 px-6 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-gray-700 flex items-center space-x-2";
+                renderTeacherSubmissions();
+            } else {
+                evalSec.classList.add('hidden');
+                createSec.classList.remove('hidden');
+                tabCreate.className = "py-3 px-6 font-bold text-sm border-b-2 border-blue-600 text-blue-600 flex items-center space-x-2";
+                tabEval.className = "py-3 px-6 font-bold text-sm border-b-2 border-transparent text-gray-500 hover:text-gray-700 flex items-center space-x-2";
+            }
+        }
+
+        // RENDER TEACHER SUBMISSIONS (STRICT LINE 1, LINE 2 (BLANK), LINE 3 FORMAT)
+        function renderTeacherSubmissions() {
+            const container = document.getElementById('teacher-submissions-container');
+            container.innerHTML = '';
+
+            const gradeFilter = document.getElementById('filter-eval-grade').value;
+            const secFilter = document.getElementById('filter-eval-sec').value;
+
+            let filtered = submissions;
+
+            if (currentTeacherScope !== 'MASTER') {
+                filtered = filtered.filter(s => 
+                    s.grade === currentTeacherScope.grade && 
+                    s.subject === currentTeacherScope.subject
+                );
+            }
+
+            if (gradeFilter !== 'ALL') {
+                filtered = filtered.filter(s => s.grade === gradeFilter);
+            }
+            if (secFilter !== 'ALL') {
+                filtered = filtered.filter(s => s.section === secFilter);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white p-8 rounded-xl border border-gray-200 text-center">
+                        <i class="fas fa-inbox text-gray-300 text-4xl mb-3"></i>
+                        <p class="text-gray-600 font-semibold">No submissions received for this criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(sub => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-6";
+
+                // Build Answer Responses in strict Line 1: Question, Line 2: (blank), Line 3: Answer format
+                let responsesHtml = '';
+                sub.responses.forEach((resp, rIdx) => {
+                    responsesHtml += `
+                        <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 space-y-1 font-mono text-sm">
+                            <div class="text-blue-900 font-bold">Line 1: Question ${rIdx + 1}: ${resp.question}</div>
+                            <div class="h-4 bg-gray-200/50 rounded text-xs text-gray-400 px-2 italic">Line 2: (Blank space line)</div>
+                            <div class="text-emerald-800 font-bold">Line 3: Answer: ${resp.answer}</div>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-4 gap-2">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded-full">${sub.grade} — ${sub.section}</span>
+                                <span class="bg-gray-100 text-gray-700 text-xs font-mono px-2 py-0.5 rounded">Adm: ${sub.studentAdm}</span>
+                                <span class="text-xs text-gray-400">Submitted at ${sub.submittedAt}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mt-1">${sub.studentName}</h3>
+                            <p class="text-xs text-blue-600 font-semibold">${sub.paperTitle} (${sub.subject})</p>
+                        </div>
+                        <div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold ${sub.evaluation.evaluated ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                                ${sub.evaluation.evaluated ? 'Evaluated' : 'Pending Evaluation'}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Line-by-Line Formatted Output -->
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold uppercase text-gray-400 tracking-wider">Line-by-Line Response Receiver</h4>
+                        ${responsesHtml}
+                    </div>
+
+                    <!-- Teacher Evaluation Form -->
+                    <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 space-y-3">
+                        <h4 class="font-bold text-sm text-blue-900">Evaluation & Grading Controls</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Assigned Score</label>
+                                <input type="text" id="eval-score-${sub.id}" value="${sub.evaluation.score}" placeholder="e.g. 18/20" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Letter Grade</label>
+                                <select id="eval-grade-${sub.id}" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm bg-white font-semibold">
+                                    <option value="A+" ${sub.evaluation.letterGrade === 'A+' ? 'selected' : ''}>Grade A+</option>
+                                    <option value="A" ${sub.evaluation.letterGrade === 'A' ? 'selected' : ''}>Grade A</option>
+                                    <option value="B" ${sub.evaluation.letterGrade === 'B' ? 'selected' : ''}>Grade B</option>
+                                    <option value="C" ${sub.evaluation.letterGrade === 'C' ? 'selected' : ''}>Grade C</option>
+                                    <option value="F" ${sub.evaluation.letterGrade === 'F' ? 'selected' : ''}>Grade F</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Teacher Notes / Remarks (Unlimited Text)</label>
+                            <textarea id="eval-notes-${sub.id}" placeholder="Write evaluation notes..." class="w-full p-2.5 border border-gray-300 rounded-lg text-sm bg-white auto-expand">${sub.evaluation.comments}</textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button onclick="saveEvaluation('${sub.id}')" class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-5 py-2 rounded-lg font-bold transition">
+                                Save Evaluation
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function saveEvaluation(subId) {
+            const sub = submissions.find(s => s.id === subId);
+            if (!sub) return;
+
+            sub.evaluation.score = document.getElementById(`eval-score-${subId}`).value;
+            sub.evaluation.letterGrade = document.getElementById(`eval-grade-${subId}`).value;
+            sub.evaluation.comments = document.getElementById(`eval-notes-${subId}`).value;
+            sub.evaluation.evaluated = true;
+
+            alert("Evaluation saved successfully!");
+            renderTeacherSubmissions();
+        }
+
+        // QUESTION PAPER BUILDER LOGIC
+        function addQuestionToBuilder(type) {
+            const qObj = {
+                id: 'bq_' + Date.now() + Math.random().toString(36).substr(2, 4),
+                type: type,
+                prompt: '',
+                imageUrl: '',
+                options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+                correctKey: 'Option 1',
+                pairs: [
+                    { item: 'Item 1', match: 'Match 1' },
+                    { item: 'Item 2', match: 'Match 2' }
+                ]
+            };
+            builderQuestions.push(qObj);
+            renderBuilderQuestions();
+        }
+
+        function removeBuilderQuestion(id) {
+            builderQuestions = builderQuestions.filter(q => q.id !== id);
+            renderBuilderQuestions();
+        }
+
+        function renderBuilderQuestions() {
+            const container = document.getElementById('paper-builder-questions');
+            container.innerHTML = '';
+
+            builderQuestions.forEach((q, idx) => {
+                const item = document.createElement('div');
+                item.className = "p-4 rounded-xl border border-gray-200 bg-gray-50 space-y-3 relative";
+
+                let specificControls = '';
+                if (q.type === 'mcq') {
+                    specificControls = `
+                        <div class="grid grid-cols-2 gap-2 mt-2">
+                            ${q.options.map((opt, oI) => `
+                                <input type="text" value="${opt}" onchange="builderQuestions[${idx}].options[${oI}] = this.value" placeholder="Option ${oI+1}" class="px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white">
+                            `).join('')}
+                        </div>
+                    `;
+                } else if (q.type === 'match') {
+                    specificControls = `
+                        <div class="space-y-2 mt-2">
+                            ${q.pairs.map((p, pI) => `
+                                <div class="flex gap-2">
+                                    <input type="text" value="${p.item}" onchange="builderQuestions[${idx}].pairs[${pI}].item = this.value" placeholder="Left Item" class="flex-1 px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white">
+                                    <input type="text" value="${p.match}" onchange="builderQuestions[${idx}].pairs[${pI}].match = this.value" placeholder="Right Matching Value" class="flex-1 px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white">
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full uppercase">Q${idx+1}: ${q.type}</span>
+                        <button onclick="removeBuilderQuestion('${q.id}')" class="text-red-500 hover:text-red-700 text-xs font-bold">Remove</button>
+                    </div>
+
+                    <textarea onchange="builderQuestions[${idx}].prompt = this.value" placeholder="Enter Question Prompt (Unlimited text length)..." class="w-full p-2.5 border border-gray-300 rounded-lg text-sm bg-white">${q.prompt}</textarea>
+
+                    <div>
+                        <input type="text" value="${q.imageUrl}" onchange="builderQuestions[${idx}].imageUrl = this.value" placeholder="Optional Image URL (https://...)" class="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white">
+                    </div>
+
+                    ${specificControls}
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
+        function saveCreatedQuestionPaper() {
+            const title = document.getElementById('new-paper-title').value.trim();
+            const grade = document.getElementById('new-paper-grade').value;
+            const section = document.getElementById('new-paper-section').value;
+            const subject = document.getElementById('new-paper-subject').value.trim() || 'GENERAL';
+            const timeMinutes = parseInt(document.getElementById('new-paper-time').value) || 30;
+            const status = document.getElementById('new-paper-status').value;
+
+            if (!title) {
+                alert("Please enter an exam title.");
+                return;
+            }
+
+            if (builderQuestions.length === 0) {
+                alert("Please add at least one question to the exam.");
+                return;
+            }
+
+            const newPaper = {
+                id: 'paper-' + Date.now(),
+                title,
+                grade,
+                section,
+                subject,
+                timeMinutes,
+                status,
+                questions: [...builderQuestions]
+            };
+
+            examPapers.unshift(newPaper);
+            alert("Question Paper created and saved successfully!");
+
+            // Reset form
+            document.getElementById('new-paper-title').value = '';
+            builderQuestions = [];
+            addQuestionToBuilder('mcq');
+            switchTeacherTab('eval');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
